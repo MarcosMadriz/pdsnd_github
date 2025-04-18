@@ -7,11 +7,15 @@ Created on 17/04/2025 in London, United Kingdom
 Git project by Marcos
 
 ### Description
-Describe what your project is about and what it does
+Task around posting my own work on GitHub
 
 ### Files used
-Include the files used
+bikeshare.py
+chicago.csv
+new_york_city.csv
+washington.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+https://git-scm.com/docs
+
 
