@@ -1,3 +1,10 @@
+"""
+Importing necessary libraries:
+- time: for time-related functions (e.g., pauses or tracking execution time)
+- pandas (pd): for data manipulation and analysis using DataFrames
+- numpy (np): for numerical operations and efficient array handling
+"""
+
 import time
 import pandas as pd
 import numpy as np
