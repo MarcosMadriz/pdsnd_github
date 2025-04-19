@@ -2,6 +2,11 @@ import time
 import pandas as pd
 import numpy as np
 
+# Lists
+VALID_CITIES = ['chicago', 'new york city', 'washington']
+VALID_MONTHS = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
+VALID_DAYS = ['all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -20,7 +25,7 @@ def get_filters():
     
     while True:
         city = input("\nGive us a city: ").lower()
-        if city in ['chicago', 'new york city', 'washington']:
+        if city in VALID_CITIES:
             break
         else:
             print("\nPlease type 'Chicago', 'New York City' or 'Washington'")
@@ -29,7 +34,7 @@ def get_filters():
     
     while True:
         month = input("\nGive us a month: ").lower()
-        if month in ['all','january', 'february', 'march', 'april', 'may', 'june']:
+        if month in VALID_MONTHS:
             break
         else:
             print("\nPlease select a valid month or 'all'")
@@ -38,7 +43,7 @@ def get_filters():
     
     while True:
         day = input("\nGive us a day of the week: ").title()
-        if day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'All']:
+        if day in VALID_DAYS:
             break
         else:
             print("\nPlease select a valid day of the week or 'all'")
