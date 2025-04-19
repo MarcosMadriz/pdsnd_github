@@ -9,6 +9,11 @@ import time
 import pandas as pd
 import numpy as np
 
+# Lists
+VALID_CITIES = ['chicago', 'new york city', 'washington']
+VALID_MONTHS = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
+VALID_DAYS = ['all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -27,7 +32,7 @@ def get_filters():
     
     while True:
         city = input("\nGive us a city: ").lower()
-        if city in ['chicago', 'new york city', 'washington']:
+        if city in VALID_CITIES:
             break
         else:
             print("\nPlease type 'Chicago', 'New York City' or 'Washington'")
@@ -36,7 +41,7 @@ def get_filters():
     
     while True:
         month = input("\nGive us a month: ").lower()
-        if month in ['all','january', 'february', 'march', 'april', 'may', 'june']:
+        if month in VALID_MONTHS:
             break
         else:
             print("\nPlease select a valid month or 'all'")
@@ -45,7 +50,7 @@ def get_filters():
     
     while True:
         day = input("\nGive us a day of the week: ").title()
-        if day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'All']:
+        if day in VALID_DAYS:
             break
         else:
             print("\nPlease select a valid day of the week or 'all'")
@@ -153,16 +158,25 @@ def station_stats(df):
 
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
-
+    
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    # TO DO: display total travel time
-    print("Total trave time is", int(df['Trip Duration'].sum() / 86400), "days,", int((df['Trip Duration'].sum() % 86400) / 3600), "hours and", int((df['Trip Duration'].sum() % 86400) / 3600), "minutes\n")
+    total_duration = df['Trip Duration'].sum()
+    mean_duration = df['Trip Duration'].mean()
 
+    days = int(total_duration // 86400)
+    hours = int((total_duration % 86400) // 3600)
+    minutes = int(((total_duration % 86400) % 3600) // 60)
+    
+    avg_minutes = int(mean_duration // 60)
+    avg_seconds = int(mean_duration % 60)
+    
+    # TO DO: display total travel time
+    print(f"Total travel time is {days} days, {hours} hours, and {minutes} minutes\n")
 
     # TO DO: display mean travel time
-    print("And the average travel time is", int(df['Trip Duration'].mean() / 60), "mins and", int(df['Trip Duration'].mean() % 60), "seconds")
+    print(f"And the average travel time is {avg_minutes} mins and {avg_seconds} seconds")
 
     print("\nThis took %s seconds.\n" % (time.time() - start_time))
     print('-'*40)
